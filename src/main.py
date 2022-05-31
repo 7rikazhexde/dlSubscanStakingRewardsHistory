@@ -195,10 +195,7 @@ def main():
             font_info = '游ゴシック Medium'
             result = sg.popup_ok_cancel('GithubのREADME.mdへ移動します',font=(font_info,20))
             if result == 'OK':
-                webbrowser.open('https://pysimplegui.readthedocs.io/en/latest/')
-            #else:
-                #window.close()
-                #window = sg_gui.usage_window()
+                webbrowser.open('https://github.com/7rikazhexde/dlSubscanStakingRewardsHistory/blob/main/README.md')
         if event == '-RETURN_MAIN_WINDOW-':
             window.close()
             window = sg_gui.main_window()
