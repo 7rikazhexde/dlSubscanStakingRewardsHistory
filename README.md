@@ -1,8 +1,10 @@
 # dlSubscanStakingRewardsHistory
 PySimpleGUIとSubscan APIを使用してReward&amp;Slashのデータをcsvファイルで保存するGUIアプリ
 
+![](https://img.shields.io/badge/python-v3.10-blue) ![](https://img.shields.io/badge/pysimplegui-v4.60.1-blue) ![](https://img.shields.io/badge/requests-v2.27.1-blue) ![](https://img.shields.io/badge/pandas-v1.4.2-blue) ![](https://img.shields.io/badge/license-MIT-blue) 
+
 ## 概要
-PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイルで保存するGUIアプリ
+PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイルで保存します。
 * Reward&Slashの取引履歴(Download all data)  
 * Cryptactカスタムファイル(ステーキング報酬)  
 ![image1](./png/dlSubscanStakingRewardsHistory_startup.png)  
@@ -39,7 +41,7 @@ APIキー、アドレス、小数点調整値、有効数字桁数を設定し�
 
 ![image2](./png/dlSubscanStakingRewardsHistory_setting.png)  
 
-**＜補足＞**
+**＜補足＞**  
 APIキーはHTTP Request Header情報(```X-API-Key```)で使用しますが、未指定でも値は取得できます。    
 ただし、ResponseデータはRate Limiting(参考:[Global Conventions](https://support.subscan.io/#global-conventions))に依存します。  
 取得件数に大きい値で指定すると「```429 Too Many Requests```」となり、正しく動作しないことがあリます。利用する際はAPIキーの取得をお願いします。  
@@ -116,7 +118,7 @@ python main.py
 ```
 
 ## 使用例
-**＜注意事項＞**
+**＜注意事項＞**  
 データはブラウザ上で表示されるValueではありません。
 全てのアカウントに当てはまる訳ではありませんが、Valueは値の桁数調整されて表示されています。
 本コードではReward&Slashの取引履歴(Download all data)に合わせていますので、確認する際はそちらと比較してください。
