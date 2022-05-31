@@ -1,0 +1,2 @@
+# dlSubscanStakingRewardsHistory
+PySimpleGUIとSubscan APIを使用してReward&amp;Slashのデータをcsvファイルで保存するGUIアプリ
