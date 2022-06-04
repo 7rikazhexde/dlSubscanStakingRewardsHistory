@@ -44,7 +44,7 @@ package gui.py <<Frame>>{
     usage_window()
   }
 }
-note top: config情報はコンストラクタで指定し、\nconfig情報はgetter/setterメソッドで処理する\n（各メソッドはイベントに応じて実行する)\
+note bottom: config情報はコンストラクタで指定し、\nconfig情報はgetter/setterメソッドで処理する\n（各メソッドはイベントに応じて実行する)\
 
 package cryptact.py <<Frame>>{
   class "CryptactInfo" as src.cryptact.CryptactInfo {
@@ -168,8 +168,8 @@ note "config情報はコンストラクタで指定し、\nconfig情報はgetter
 src.subscan.SubscanApiInfo .. N2
 src.cryptact.CryptactInfo .. N2
 
-src.main.SgWindowProcess "1" -- "1" configparser.ConfigParser : self.config,edit
-src.main.SgWindowProcess "1" -- "1" src.gui.CreateGui : sg_gui
+src.main.SgWindowProcess "1" -- "2" configparser.ConfigParser : self.config,edit
+src.gui.CreateGui "1" --* "1" src.main.SgWindowProcess : sg_gui
 src.subscan.SubscanStakingRewardDataProcess "1" --* "1" src.main.SgWindowProcess : stkrwd
 src.subscan.SubscanStakingRewardsDataProcessForCryptact "1" --* "1" src.main.SgWindowProcess : cyrptactcustom
 src.subscan.SubscanStakingRewardsDataFrameForCryptact --|> src.subscan.SubscanStakingRewardsDataFrame
