@@ -52,7 +52,7 @@ class CreateGui:
     def main_window(self):
         # テーブル要素(cURLで受信した値を表示するレイアウト)
         # Tableでvisible=Falseにするとスクロールバーのみ表示されるためColumnの指定で非表示にする(culumn_layout参照)
-        # Tableの値を更新するためベースのTableを作成する（ヘッダーはINIT_HEADER,表の値はvaluesで指定する)
+        # Tableの値を更新するためベースのTableを作成する（ヘッダーはconfig.iniで定義した値,表の値はvaluesで指定する)
         # valuesは10行15列のテーブル指定で初期化する(テーブルはこの値に依存するためnum_rowsの指定と合わせる)
         data = [[0 for j in range(10)] for i in range(15)]
 
@@ -61,6 +61,7 @@ class CreateGui:
         font_info = '游ゴシック Medium'
 
         if self.__history_type == 'Reward&Slash':
+            # 列数と列幅をトークン毎に設定する
             if self.__token_data == 'DOT':
                 visible_columns = [vclum for x in range(10)]
                 col_widths_token = [14,6,11,10,13,12,15,15,15,15]
@@ -77,7 +78,7 @@ class CreateGui:
                 visible_column_map = visible_columns,
                 # 各列が占める文字数指定
                 col_widths = col_widths_token,
-                # TrueにするとINIT_HEADERの幅固定になるためFalseとする
+                # Trueにすると列幅が固定になるためFalseとする
                 # https://github.com/PySimpleGUI/PySimpleGUI/issues/4375
                 auto_size_columns = False,
                 # 一度に表示するテーブルの行数を指定(表示するテーブルの行数<初期化したテーブルの行数)
@@ -90,12 +91,11 @@ class CreateGui:
             table_layout = sg.Table(    
                 values = data,
                 headings = self.__cryptact_heder_data,
-                #headings = self.__reward_slash_data_header_token,
                 font=(font_info,15),
                 visible_column_map = visible_columns,
-                # 各列が占める文字数指定(コイン共通)
+                # 各列が占める文字数指定(トークン共通)
                 col_widths = [19,8,20,6,20,6,8,6,8,13],
-                # TrueにするとINIT_HEADERの幅固定になるためFalseとする
+                # Trueにすると列幅が固定になるためFalseとする
                 # https://github.com/PySimpleGUI/PySimpleGUI/issues/4375
                 auto_size_columns = False,
                 # 一度に表示するテーブルの行数を指定(表示するテーブルの行数<初期化したテーブルの行数)
@@ -108,10 +108,7 @@ class CreateGui:
         show_layout = ( 
             [sg.Text('DL Subscan Staking Rewards History', font=(font_info,25), justification='center', text_color='#483d8b')],
             [sg.HorizontalSeparator()],
-            [
-                sg.Button('使い方',font=(font_info,20),size=(5, 1),button_color = ('#FFFFFF','#1f3134'),key = '-USAGE-')
-                #sg.Button('設定',font=(font_info,20),size=(5, 1), key = '-SETTING-')
-            ],
+            [sg.Button('使い方',font=(font_info,20),size=(5, 1),button_color = ('#FFFFFF','#1f3134'),key = '-USAGE-')],
             [sg.HorizontalSeparator()],
             [
                 sg.Text('取得対象:',font=(font_info,20),size=(7, 1)),
@@ -146,7 +143,6 @@ class CreateGui:
         # Column上にTableを埋め込みColumnのvisible=Falseに指定してTableを非表示にする
         # Columnのscrollableは表示しないためFalseに指定する
         # https://github.com/PySimpleGUI/PySimpleGUI/issues/2102
-        #culumn_layout = sg.Column([[table_layout]], scrollable=False, visible=True, key='-COL-')
         culumn_layout = sg.Column([[table_layout]], scrollable=False, visible=False, key='-COL-')
 
         # Tableの値(pandas.DataFrame)を表示するレイアウト
