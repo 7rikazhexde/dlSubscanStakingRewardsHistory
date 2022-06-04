@@ -92,14 +92,14 @@ class SubscanStakingRewardsDataFrame:
         self.__stash           = one_line_headerdata_list[7]
         self.__reward_account  = one_line_headerdata_list[8]
 
-        if self.__token_data == "DOT":
+        if self.token_data == "DOT":
             # DotにはValidator Stashが存在するため作成する
             self.__validator_stash = one_line_headerdata_list[9]
             self.__one_line_data_list = [self.__event_index, self.__era, self.__date,\
                                   self.__block, self.__extrinsic_index, self.__value,\
                                   self.__action, self.__stash, self.__reward_account,\
                                   self.__validator_stash]
-        elif self.__token_data == "KSM":
+        elif self.token_data == "KSM":
             self.__one_line_data_list = [self.__event_index, self.__era, self.__date,\
                                   self.__block, self.__extrinsic_index, self.__value,\
                                   self.__action, self.__stash, self.__reward_account]
