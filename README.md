@@ -131,13 +131,13 @@ python main.py
 ![image1](./png/dlSubscanStakingRewardsHistory_CryptactCustom.png)
 
 ## その他
-### SubscanAPI情報について
-[API Endpoint](https://support.subscan.io/#api-endpoints)の仕様に合わせてトークン毎に下記Request URLを指定して送信します。
-| Token | API         | Request URL     | 
-| ----- | ----------- | --------------- | 
-| DOT   | V2 API      | reward-slash-v2 | 
-| KSM   | V2 API      | reward-slash-v2 | 
-| ASTR  | Staking API | reward-slash    | 
+### 取得対象のTokenとSubscan API情報について
+StakingRewardsは[API Endpoint](https://support.subscan.io/#api-endpoints)の仕様に合わせてトークン毎に下記`Request URL`を指定して取得します。
+| Token | API         | Request URL     | module_id    | event_id | 
+| ----- | ----------- | --------------- | ------------ | -------- | 
+| DOT   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
+| KSM   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
+| ASTR  | Staking API | reward-slash    | dappsstaking | Reward   | 
 
 ### Cryptactカスタムファイル(ステーキング報酬)について
 [カスタムファイルの作成方法 / 2.10.ステーキングによる報酬](https://support.cryptact.com/hc/ja/articles/360002571312-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95#menu210)の仕様に基づきデータを作成します。
