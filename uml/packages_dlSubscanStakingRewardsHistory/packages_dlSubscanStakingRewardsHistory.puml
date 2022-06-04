@@ -1,0 +1,17 @@
+@startuml packages_dlSubscanStakingRewardsHistory
+set namespaceSeparator none
+package "src" as src {
+    package "cryptact.py" as src.cryptact {
+    }
+    package "gui.py" as src.gui {
+    }
+    package "main.py" as src.main {
+    }
+    package "subscan.py" as src.subscan {
+    }
+}
+
+src.main --> src.gui
+src.main --> src.subscan
+src.subscan --> src.cryptact
+@enduml
