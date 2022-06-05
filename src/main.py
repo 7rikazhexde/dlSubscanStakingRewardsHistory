@@ -10,7 +10,7 @@ class SgWindowProcess:
         # iniファイルから設定を読み込む
         self.__font_info = '游ゴシック Medium'
         self.__config = configparser.ConfigParser()
-        self.__config.read('config.ini')
+        self.__config.read('./config.ini')
         self.__config_subscan_api_info = self.__config['subscan_api_info']
         self.__config_subscan_api_doc  = self.__config_subscan_api_info['subscan_api_doc']
         self.__config_ui_info          = self.__config['ui_info']
@@ -146,7 +146,7 @@ class SgWindowProcess:
                 window = sg_gui.config_window(self.__config_subscan_api_info,values['-TOKEN-'])
             if event == '-CONFIG_UPDATE-':
                 edit = configparser.ConfigParser()
-                edit.read('config.ini')
+                edit.read('./config.ini')
                 edit_subscan = edit['subscan_api_info']
                 address_token_value = f'-SUBSCAN_ADDRESS_{sg_gui.token_data}-'
                 address_token = f'address_{(sg_gui.token_data).lower()}'
@@ -162,10 +162,10 @@ class SgWindowProcess:
                 edit_subscan[decimal_point_adjust_token] = values[decimal_point_adjust_token_value]
 
                 edit_subscan['api_key'] = values['-SUBSCAN_API-']
-                with open('config.ini', 'w') as configfile:
+                with open('./config.ini', 'w') as configfile:
                     edit.write(configfile)
                 window.close()
-                self.__config.read('config.ini')
+                self.__config.read('./config.ini')
                 window = sg_gui.main_window()
             if event == '-CANCEL-':
                 window.close()

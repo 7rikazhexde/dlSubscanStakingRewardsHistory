@@ -52,7 +52,7 @@ APIキーはHTTP Request Header情報(```X-API-Key```)で使用しますが、�
 以下ではDocs記載のアドレスを例にして画面の名称(PySimpleGUIモジュールのクラス)の形式で示して画面の名称と詳細を説明します。    
 なお、詳細はPySimpleGUIの[ELEMENT AND FUNCTION CALL REFERENCE](https://pysimplegui.readthedocs.io/en/latest/call%20reference/#element-and-function-call-reference)を参照してください。  
 
-例：Docs記載のアドレスで取得した[Reward&Slash](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)(2022/05/31時点)  
+例：Docs記載のアドレスで取得した[Reward&Slash](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)(2022/06/05時点)  
 ![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)  
 
 **1. 使い方(Button Element)**  
@@ -123,11 +123,11 @@ python main.py
 全てのアカウントに当てはまる訳ではありませんが、Valueは値の桁数調整されて表示されています。
 本コードではReward&Slashの取引履歴(Download all data)に合わせていますので、確認する際はそちらと比較してください。
 
-* Reward&Slashの取引履歴(Download all data)の例([csvファイル](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_Reward&Slash_20220531.csv))
+* Reward&Slashの取引履歴(Download all data)の例([csvファイル](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_Reward&Slash_300_20220605.csv))
 ![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)
 
 
-* Cryptactカスタムファイル(ステーキング報酬)の例([csvファイル](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_0531.csv))
+* Cryptactカスタムファイル(ステーキング報酬)の例([csvファイル](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_300_20220605.csv))
 ![image1](./png/dlSubscanStakingRewardsHistory_CryptactCustom.png)
 
 ## その他
