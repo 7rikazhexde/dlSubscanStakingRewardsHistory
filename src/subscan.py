@@ -1,7 +1,7 @@
 import json
 import math
 import requests
-import datetime
+from datetime import datetime
 import pandas as pd
 import time
 from cryptact import CryptactInfo
@@ -81,7 +81,7 @@ class SubscanStakingRewardsDataFrame:
         # 9 validator_stash
         self.__event_index     = one_line_headerdata_list[0]
         self.__era             = one_line_headerdata_list[1]
-        self.__date            = one_line_headerdata_list[2]
+        self.__date            = "'" + (datetime.utcfromtimestamp(one_line_headerdata_list[2])).strftime("%Y/%m/%d %H:%M:%S")
         # Blockデータはevent_indexから作成する
         self.__block           = self.__event_index.split('-')[0]
         self.__extrinsic_index = one_line_headerdata_list[3]
@@ -118,7 +118,7 @@ class SubscanStakingRewardsDataFrame:
         # 6 event_id
         # Event IDデータはevent_indexから作成する
         self.__event_id        = one_line_headerdata_list[0]
-        self.__date            = one_line_headerdata_list[1]
+        self.__date            = "'" + (datetime.utcfromtimestamp(one_line_headerdata_list[1])).strftime("%Y/%m/%d %H:%M:%S")
         # Blockデータはevent_indexから作成する
         self.__block           = self.__event_id.split('-')[0]
         self.__extrinsic_index = one_line_headerdata_list[3]
@@ -171,7 +171,7 @@ class SubscanStakingRewardsDataFrameForCryptact(SubscanStakingRewardsDataFrame):
         # 9 validator_stash
         if self.token_data == "DOT" or self.token_data == "KSM":
             self.__event_index        = one_line_headerdata_list[0]
-            self.__date               = "'" + (datetime.datetime.fromtimestamp(one_line_headerdata_list[2])).strftime("%Y/%m/%d %H:%M:%S")
+            self.__date               = "'" + (datetime.fromtimestamp(one_line_headerdata_list[2])).strftime("%Y/%m/%d %H:%M:%S")
             self.__value              = float(one_line_headerdata_list[4]) * adjust_value
             self.__value              = digit.format(self.__value)
             self.__one_line_data_list = [self.__date,action,source,base,self.__value,\
@@ -184,7 +184,7 @@ class SubscanStakingRewardsDataFrameForCryptact(SubscanStakingRewardsDataFrame):
         # 5 module_id
         elif self.token_data == "ASTR":
             self.__event_id           = one_line_headerdata_list[0]
-            self.__date               = "'" + (datetime.datetime.fromtimestamp(one_line_headerdata_list[1])).strftime("%Y/%m/%d %H:%M:%S")
+            self.__date               = "'" + (datetime.fromtimestamp(one_line_headerdata_list[1])).strftime("%Y/%m/%d %H:%M:%S")
             self.__value              = float(one_line_headerdata_list[4]) * adjust_value
             self.__value              = digit.format(self.__value)
             self.__one_line_data_list = [self.__date,action,source,base,self.__value,\

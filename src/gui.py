@@ -64,13 +64,13 @@ class CreateGui:
             # 列数と列幅をトークン毎に設定する
             if self.__token_data == 'DOT':
                 visible_columns = [vclum for x in range(10)]
-                col_widths_token = [14,6,11,10,13,12,15,15,15,15]
+                col_widths_token = [14,6,17,10,13,12,15,15,15,15]
             elif self.__token_data == 'KSM':
                 visible_columns = [vclum for x in range(9)]
-                col_widths_token = [14,6,11,10,13,12,15,15,15]
+                col_widths_token = [14,6,17,10,13,12,15,15,15]
             elif self.__token_data == 'ASTR':
                 visible_columns = [vclum for x in range(6)]
-                col_widths_token = [11,11,8,15,20,20]
+                col_widths_token = [11,17,8,15,20,20]
             table_layout = sg.Table(    
                 values = data,
                 headings = self.__reward_slash_data_header_token,
@@ -94,7 +94,7 @@ class CreateGui:
                 font=(font_info,15),
                 visible_column_map = visible_columns,
                 # 各列が占める文字数指定(トークン共通)
-                col_widths = [19,8,20,6,20,6,8,6,8,13],
+                col_widths = [17,8,20,6,20,6,8,6,8,13],
                 # Trueにすると列幅が固定になるためFalseとする
                 # https://github.com/PySimpleGUI/PySimpleGUI/issues/4375
                 auto_size_columns = False,
