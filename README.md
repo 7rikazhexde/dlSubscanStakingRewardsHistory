@@ -22,14 +22,16 @@ PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイ�
 ## 使い方
 ### 1. パッケージインストール
 
-下記をインストールしてください。
-* PySimpleGUI
-* Pandas
-* requests
+venvやpyenv等で仮想環境を作成して下記コマンドを実行してください。
+```
+pip install PySimpleGUI==4.60.1
+pip install pandas==1.4.2
+pip install requests==2.27.1
+```
 
-もしくは下記を実行してください。
-```.py
-pip3 install requirements.txt
+もしくは仮想環境下で下記コマンドを実行してください。
+```
+pip install -r requirements.txt
 ```
 
 ### 2. SubscanAPIの設定  
