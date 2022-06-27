@@ -51,8 +51,8 @@ APIキーはHTTP Request Header情報(```X-API-Key```)で使用しますが、�
 
 ### 3. main画面操作実行
 #### 画面の名称と詳細
-以下ではDocs記載のアドレスを例にして画面の名称(PySimpleGUIモジュールのクラス)の形式で示して画面の名称と詳細を説明します。    
-なお、詳細はPySimpleGUIの[ELEMENT AND FUNCTION CALL REFERENCE](https://pysimplegui.readthedocs.io/en/latest/call%20reference/#element-and-function-call-reference)を参照してください。  
+以下ではDocs記載のアドレスを例にして画面の名称(PySimpleGUIモジュールのクラス)ついて説明します。    
+PySimpleGUIモジュールのクラスの詳細についてはPySimpleGUIの[ELEMENT AND FUNCTION CALL REFERENCE](https://pysimplegui.readthedocs.io/en/latest/call%20reference/#element-and-function-call-reference)を参照してください。  
 
 例：Docs記載のアドレスで取得した[Reward&Slash](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)(2022/06/05時点)  
 ![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)  
