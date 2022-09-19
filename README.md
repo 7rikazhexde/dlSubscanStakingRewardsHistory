@@ -1,7 +1,7 @@
 # dlSubscanStakingRewardsHistory
 PySimpleGUIとSubscan APIを使用してReward&amp;Slashのデータをcsvファイルで保存するGUIアプリ
 
-![](https://img.shields.io/badge/python-v3.10-blue) ![](https://img.shields.io/badge/pysimplegui-v4.60.1-blue) ![](https://img.shields.io/badge/requests-v2.27.1-blue) ![](https://img.shields.io/badge/pandas-v1.4.2-blue) ![](https://img.shields.io/badge/license-MIT-blue) 
+[![](https://img.shields.io/badge/python-≧v3.10-blue)](https://www.python.org/downloads/) [![](https://img.shields.io/badge/pysimplegui-v4.60.1-blue)](https://pypi.org/project/PySimpleGUI/4.60.1/) [![](https://img.shields.io/badge/requests-v2.27.1-blue)](https://pypi.org/project/requests/2.27.0/) [![](https://img.shields.io/badge/pandas-v1.4.2-blue)](https://pypi.org/project/pandas/1.4.2/) [![](https://img.shields.io/badge/license-MIT-blue)](https://github.com/opensource-jp/licenses/blob/main/MIT/MIT.md) 
 
 ## 概要
 PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイルで保存します。
