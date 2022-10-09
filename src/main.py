@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import configparser
+import codecs
 from gui import CreateGui
 import webbrowser
 from subscan import SubscanStakingRewardDataProcess
@@ -10,7 +11,7 @@ class SgWindowProcess:
         # iniファイルから設定を読み込む
         self.__font_info = '游ゴシック Medium'
         self.__config = configparser.ConfigParser()
-        self.__config.read('./config.ini')
+        self.__config.read('./config.ini',encoding='utf-8')
         self.__config_subscan_api_info = self.__config['subscan_api_info']
         self.__config_subscan_api_doc  = self.__config_subscan_api_info['subscan_api_doc']
         self.__config_ui_info          = self.__config['ui_info']
@@ -133,7 +134,7 @@ class SgWindowProcess:
                 if result != '':
                     # パスが空でなければindex指定なしで指定のパスにcsvファイルを保存する
                     file_path = result + '.csv'
-                    df_csv.to_csv(file_path,index = False)
+                    df_csv.to_csv(file_path,index = False,encoding='utf-8')
                     save_location = file_path
                     output_string = f'ファイル保存先:\n-- Save Location: {save_location}\n'
                     window['-OUTPUT2-'].update(output_string)
@@ -146,7 +147,7 @@ class SgWindowProcess:
                 window = sg_gui.config_window(self.__config_subscan_api_info,values['-TOKEN-'])
             if event == '-CONFIG_UPDATE-':
                 edit = configparser.ConfigParser()
-                edit.read('./config.ini')
+                edit.read('./config.ini',encoding='utf-8')
                 edit_subscan = edit['subscan_api_info']
                 address_token_value = f'-SUBSCAN_ADDRESS_{sg_gui.token_data}-'
                 address_token = f'address_{(sg_gui.token_data).lower()}'
@@ -162,10 +163,10 @@ class SgWindowProcess:
                 edit_subscan[decimal_point_adjust_token] = values[decimal_point_adjust_token_value]
 
                 edit_subscan['api_key'] = values['-SUBSCAN_API-']
-                with open('./config.ini', 'w') as configfile:
+                with codecs.open('./config.ini', mode='w', encoding='utf-8') as configfile:
                     edit.write(configfile)
                 window.close()
-                self.__config.read('./config.ini')
+                self.__config.read('./config.ini',encoding='utf-8')
                 window = sg_gui.main_window()
             if event == '-CANCEL-':
                 window.close()
