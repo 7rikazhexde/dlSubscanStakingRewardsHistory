@@ -1,7 +1,7 @@
 # dlSubscanStakingRewardsHistory
 PySimpleGUIとSubscan APIを使用してReward&amp;Slashのデータをcsvファイルで保存するGUIアプリ
 
-[![](https://img.shields.io/badge/python-≧v3.10-blue)](https://www.python.org/downloads/) [![](https://img.shields.io/badge/pysimplegui-v4.60.1-blue)](https://pypi.org/project/PySimpleGUI/4.60.1/) [![](https://img.shields.io/badge/requests-v2.27.1-blue)](https://pypi.org/project/requests/2.27.0/) [![](https://img.shields.io/badge/pandas-v1.4.2-blue)](https://pypi.org/project/pandas/1.4.2/) [![](https://img.shields.io/badge/license-MIT-blue)](https://github.com/opensource-jp/licenses/blob/main/MIT/MIT.md) 
+[![](https://img.shields.io/badge/python-^3.10-blue)](https://www.python.org/downloads/) [![](https://img.shields.io/badge/pysimplegui-^4.60.4-blue)](https://pypi.org/project/PySimpleGUI/4.60.4/) [![](https://img.shields.io/badge/requests-^2.28.1-blue)](https://pypi.org/project/requests/2.28.1/) [![](https://img.shields.io/badge/pandas-^1.5.1-blue)](https://pypi.org/project/pandas/1.5.1/) [![](https://img.shields.io/badge/poetry-1.2.2-blue)](https://pypi.org/project/poetry/1.2.2/) [![](https://img.shields.io/badge/license-MIT-blue)](https://github.com/opensource-jp/licenses/blob/main/MIT/MIT.md) 
 
 ## 概要
 PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイルで保存します。
@@ -24,16 +24,20 @@ PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイ�
 
 venvやpyenv等で仮想環境を作成して下記コマンドを実行してください。
 ```
-pip install PySimpleGUI==4.60.1
-pip install pandas==1.4.2
-pip install requests==2.27.1
+% pip install PySimpleGUI
+% pip install pandas
+% pip install requests
 ```
 
 もしくは仮想環境下で下記コマンドを実行してください。
 ```
-pip install -r requirements.txt
+% pip install -r requirements.txt
 ```
 
+poetryを使用している場合は下記コマンドを実行してください。
+```
+% poetry install
+```
 ### 2. SubscanAPIの設定  
 
 アプリ起動後、設定ボタンよりSubscanAPI設定画面を起動し、
@@ -116,8 +120,12 @@ Subscan APIのResponseデータを表示します。
 ### 4. コマンド実行
 main.pyを実行するとmain画面が起動します。
 ```
-python main.py
+src % python main.py
 ```
+poetryの場合は以下コマンドで仮想環境の有効化して実行してください。
+* poetry shell
+  * 仮想環境の有効化: poetry shell
+  * 仮想環境の無効化: exit
 
 ## 使用例
 **＜注意事項＞**  
