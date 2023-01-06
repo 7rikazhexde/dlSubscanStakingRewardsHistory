@@ -261,6 +261,12 @@ class SubscanStakingRewardDataProcess:
         self.digit = str(int(config_subscan_api_info[display_digit_config]) - 1)
 
     def get_subscan_stakerewards(self):
+        # list要素数初期化
+        list_num = 0
+
+        # list要素の合計値初期化
+        list_num_sum = 0
+
         # input_numが100より大きい場合、rowは上限値100のため、分割処理するため件数から処理回数を計算する
         if self.input_num > 100:
             # 取得するページ数の最大値を計算
@@ -268,9 +274,6 @@ class SubscanStakingRewardDataProcess:
             page_renge = math.floor(self.input_num / 100) + 1
             # rowを更新(rowの上限値は100のため100row/pageとする)
             self.data_dict['row'] = 100
-
-            # list要素の合計値初期化
-            list_num_sum = 0
 
             for page in range(page_renge):
                 # API rate limit exceededを考慮して0.2秒sleep
@@ -292,11 +295,11 @@ class SubscanStakingRewardDataProcess:
                     response_code = response_json['code']
                 except:
                     # ex)API rate limit exceeded
-                    break;
+                    break
 
                 try:
                     # アドレス不正でなければlistの要素数を取得
-                    if response_code != 10002:
+                    if response_code != 400:
                         list_num = len(response_json['data']['list'])
                 except TypeError:
                     count = response_json['data']['count']
@@ -324,9 +327,9 @@ class SubscanStakingRewardDataProcess:
                     # page_renge分取得したデータから件数分抽出する
                     df_retrieve = concat_df_duplicates.iloc[:self.input_num, :]
                     # ソート
-                    sort_df_retrieve = self.sort_dataframe(df_retrieve,self.sort_type)
+                    self.sort_df_retrieve = self.sort_dataframe(df_retrieve,self.sort_type)
                     # 抽出後のデータをリスト化
-                    response_data = sort_df_retrieve.values.tolist()
+                    self.response_data = self.sort_df_retrieve.values.tolist()
                     # list要素の合計値で上書き
                     list_num = list_num_sum
 
@@ -343,7 +346,7 @@ class SubscanStakingRewardDataProcess:
             response_code = response_json['code']
 
             # listの要素数を取得
-            if response_code != 10002:
+            if response_code != 400:
                 list_num = len(response_json['data']['list'])
 
             # Response結果にエラーがなく、リストが存在すれば受信データを作成する
@@ -357,10 +360,10 @@ class SubscanStakingRewardDataProcess:
                          one_line_data_list = self.subscan_stkrwd_df.get_reward_slash_data_var_astr(one_line_headerdata_list,self.adjust_value,self.digit)
                     df_page = self.subscan_stkrwd_df.json_to_df(self.df_header,item,one_line_data_list)
                 # ソート
-                sort_df_retrieve = self.sort_dataframe(df_page,self.sort_type)
+                self.sort_df_retrieve = self.sort_dataframe(df_page,self.sort_type)
                 # 抽出後のデータをリスト化
-                response_data = sort_df_retrieve.values.tolist()
-        return response_code, self.api_endpoint, response_status_code, self.header_list, response_data, sort_df_retrieve, list_num
+                self.response_data = self.sort_df_retrieve.values.tolist()
+        return response_code, self.api_endpoint, response_status_code, self.header_list, self.response_data, self.sort_df_retrieve, list_num
 
     def sort_dataframe(self,df,sort_type):
         num = len(df)
@@ -408,6 +411,12 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
         self.digit = str(int(config_subscan_api_info[display_digit_config]) - 1)        
 
     def create_stakerewards_cryptact_cutom_df(self):
+        # listの要素数初期化
+        list_num = 0
+            
+        # list要素の合計値初期化
+        list_num_sum = 0
+
         # input_numが100より大きい場合、rowは上限値100のため、分割処理するため件数から処理回数を計算する
         if self.input_num > 100:
             # 取得するページ数の最大値を計算
@@ -415,9 +424,6 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
             page_renge = math.floor(self.input_num / 100) + 1
             # rowを更新(rowの上限値は100のため100row/pageとする)
             self.data_dict['row'] = 100
-            
-            # list要素の合計値初期化
-            list_num_sum = 0
 
             for page in range(page_renge):
                 # API rate limit exceededを考慮して0.2秒sleep
@@ -440,10 +446,10 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
                     response_code = response_json['code']
                 except:
                     # ex)API rate limit exceeded
-                    break;
+                    break
                 try:
                     # アドレス不正でなければlistの要素数を取得
-                    if response_code != 10002:
+                    if response_code != 400:
                         list_num = len(response_json['data']['list'])
                 except TypeError:
                     count = response_json['data']['count']
@@ -468,9 +474,9 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
                     # page_renge分取得したデータから件数分抽出する
                     df_retrieve = concat_df_duplicates.iloc[:self.input_num, :]
                     # ソート
-                    sort_df_retrieve = self.sort_dataframe(df_retrieve,self.sort_type)
+                    self.sort_df_retrieve = self.sort_dataframe(df_retrieve,self.sort_type)
                     # 抽出後のデータをリスト化
-                    response_data = sort_df_retrieve.values.tolist()
+                    self.response_data = self.sort_df_retrieve.values.tolist()
                     # list要素の合計値で上書き
                     list_num = list_num_sum
 
@@ -487,7 +493,7 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
             response_code = response_json['code']
 
             # listの要素数を取得
-            if response_code != 10002:
+            if response_code != 400:
                 list_num = len(response_json['data']['list'])
 
             # Response結果にエラーがなく、リストが存在すれば受信データを作成する
@@ -498,7 +504,7 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
                     one_line_data_list = self.subscan_stkrwd_df.get_reward_slash_data_var_cryptact(one_line_headerdata_list,self.cryptact_info_data,self.adjust_value,self.digit)
                     df_page = self.subscan_stkrwd_df.json_to_df(self.df_header,item,one_line_data_list)
                 # ソート
-                sort_df_retrieve = self.sort_dataframe(df_page,self.sort_type)
+                self.sort_df_retrieve = self.sort_dataframe(df_page,self.sort_type)
                 # 抽出後のデータをリスト化
-                response_data = sort_df_retrieve.values.tolist()
-        return response_code, self.api_endpoint, response_status_code, self.header_list, response_data, sort_df_retrieve, list_num
+                self.response_data = self.sort_df_retrieve.values.tolist()
+        return response_code, self.api_endpoint, response_status_code, self.header_list, self.response_data, self.sort_df_retrieve, list_num
