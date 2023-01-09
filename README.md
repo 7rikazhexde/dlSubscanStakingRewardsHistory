@@ -7,7 +7,31 @@ PySimpleGUIとSubscan APIを使用してReward&amp;Slashのデータをcsvファ
 PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイルで保存します。
 * Reward&Slashの取引履歴(Download all data)  
 * Cryptactカスタムファイル(ステーキング報酬)  
+
+### 取得対象のTokenとSubscan API情報
+StakingRewardsは[API Endpoint](https://support.subscan.io/#api-endpoints)の仕様に合わせてトークン毎に下記`Request URL`を指定して取得します。
+| Token | API         | Request URL     | module_id    | event_id | 
+| ----- | ----------- | --------------- | ------------ | -------- | 
+| DOT   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
+| KSM   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
+| ASTR  | Staking API | reward-slash    | dappsstaking | Reward   | 
+
+## サンプル
+### 注意事項
+* 前提として、アプリ上で表示されるデータはSubscan Expoloerで表示されるStakingReward(Value)とは異なります。
+* 全てのアカウントに当てはまる訳ではありませんが、Valueは桁数調整されて表示されています。
+* 本コードではReward&Slashの取引履歴(Download all data)に合わせていますので、確認する際はそちらと比較してください。
+
+### 起動画面
 ![image1](./png/dlSubscanStakingRewardsHistory_startup.png)  
+
+### 履歴タイプ：Reward&Slash
+![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)
+[DLしたcsvファイル例](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_Reward&Slash_300_20220605.csv)
+
+### 履歴タイプ：CryptactCustom
+![image1](./png/dlSubscanStakingRewardsHistory_CryptactCustom.png)
+[DLしたcsvファイル例](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_300_20220605.csv)
 
 ## 注意事項
 * 特定のアカウントで受信データの確認をできることは確認していますが、必ずしも期待されたデータを取得することは保証しません。
@@ -127,28 +151,7 @@ poetryの場合は以下コマンドで仮想環境の有効化して実行し�
   * 仮想環境の有効化: poetry shell
   * 仮想環境の無効化: exit
 
-## 使用例
-**＜注意事項＞**  
-データはブラウザ上で表示されるValueではありません。
-全てのアカウントに当てはまる訳ではありませんが、Valueは値の桁数調整されて表示されています。
-本コードではReward&Slashの取引履歴(Download all data)に合わせていますので、確認する際はそちらと比較してください。
-
-* Reward&Slashの取引履歴(Download all data)の例([csvファイル](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_Reward&Slash_300_20220605.csv))
-![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)
-
-
-* Cryptactカスタムファイル(ステーキング報酬)の例([csvファイル](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_300_20220605.csv))
-![image1](./png/dlSubscanStakingRewardsHistory_CryptactCustom.png)
-
 ## その他
-### 取得対象のTokenとSubscan API情報について
-StakingRewardsは[API Endpoint](https://support.subscan.io/#api-endpoints)の仕様に合わせてトークン毎に下記`Request URL`を指定して取得します。
-| Token | API         | Request URL     | module_id    | event_id | 
-| ----- | ----------- | --------------- | ------------ | -------- | 
-| DOT   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
-| KSM   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
-| ASTR  | Staking API | reward-slash    | dappsstaking | Reward   | 
-
 ### Cryptactカスタムファイル(ステーキング報酬)について
 [カスタムファイルの作成方法 / 2.10.ステーキングによる報酬](https://support.cryptact.com/hc/ja/articles/360002571312-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95#menu210)の仕様に基づきデータを作成します。
 * Cryptactカスタムファイル用のデータはヘッダーと行データで構成されます。ヘッダーはconfig.iniの```[cryptact_info]
