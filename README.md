@@ -16,7 +16,18 @@ StakingRewardsは[API Endpoint](https://support.subscan.io/#api-endpoints)の仕
 | KSM   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
 | ASTR  | Staking API | reward-slash    | dappsstaking | Reward   | 
 
+### 注意事項
+* 特定のアカウントで受信データの確認をできることは確認していますが、必ずしも期待されたデータを取得することは保証しません。
+* 本コードを実行したこと、参考にしたことによって被るあらゆる損害について責任を負いかねますのでご注意ください。
+* Subscanの仕様やクリプタクトのデータフォーマットは変わることがありますので、最新の情報を確認してください。
+* アプリを使用する際は後述する設定画面よりSubscanAPI情報を設定してください。
+* 取引履歴は取引状況に依存します。取得したデータは目的のデータを取得できていること、トランザクションデータを参照して誤りがないことを必ず確認してください。
+* サポートするNetworkはPolkadot,Kusama,Astarのみです。  
+  他のNetworkを指定した場合正しく取得できずにエラーになります。  
+  (参考:[API Endpoints](https://support.subscan.io/#api-endpoints))  
+
 ## サンプル
+Docs記載の[アドレス](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)で取得したReward&Slashを例に示します。(2022/06/05時点) 
 ### 注意事項
 * 前提として、アプリ上で表示されるデータはSubscan Expoloerで表示されるStakingReward(Value)とは異なります。
 * 全てのアカウントに当てはまる訳ではありませんが、Valueは桁数調整されて表示されています。
@@ -32,16 +43,6 @@ StakingRewardsは[API Endpoint](https://support.subscan.io/#api-endpoints)の仕
 ### 履歴タイプ：CryptactCustom
 ![image1](./png/dlSubscanStakingRewardsHistory_CryptactCustom.png)
 [DLしたcsvファイル例](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_300_20220605.csv)
-
-## 注意事項
-* 特定のアカウントで受信データの確認をできることは確認していますが、必ずしも期待されたデータを取得することは保証しません。
-* 本コードを実行したこと、参考にしたことによって被るあらゆる損害について責任を負いかねますのでご注意ください。
-* Subscanの仕様やクリプタクトのデータフォーマットは変わることがありますので、最新の情報を確認してください。
-* アプリを使用する際は後述する設定画面よりSubscanAPI情報を設定してください。
-* 取引履歴は取引状況に依存します。取得したデータは目的のデータを取得できていること、トランザクションデータを参照して誤りがないことを必ず確認してください。
-* サポートするNetworkはPolkadot,Kusama,Astarのみです。  
-  他のNetworkを指定した場合正しく取得できずにエラーになります。  
-  (参考:[API Endpoints](https://support.subscan.io/#api-endpoints))  
 
 ## 使い方
 ### 1. パッケージインストール
@@ -82,7 +83,6 @@ APIキーはHTTP Request Header情報(```X-API-Key```)で使用しますが、�
 以下ではDocs記載のアドレスを例にして画面の名称(PySimpleGUIモジュールのクラス)ついて説明します。    
 PySimpleGUIモジュールのクラスの詳細についてはPySimpleGUIの[ELEMENT AND FUNCTION CALL REFERENCE](https://pysimplegui.readthedocs.io/en/latest/call%20reference/#element-and-function-call-reference)を参照してください。  
 
-例：Docs記載のアドレスで取得した[Reward&Slash](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)(2022/06/05時点)  
 ![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)  
 
 **1. 使い方(Button Element)**  
