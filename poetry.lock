@@ -291,7 +291,7 @@ test = ["pytest (>=6)"]
 name = "flake8"
 version = "6.0.0"
 description = "the modular source code checker: pep8 pyflakes and co"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.8.1"
 files = [
@@ -308,7 +308,7 @@ pyflakes = ">=3.0.0,<3.1.0"
 name = "flake8-pyproject"
 version = "1.2.2"
 description = "Flake8 plug-in loading the configuration from pyproject.toml"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">= 3.6"
 files = [
@@ -368,7 +368,7 @@ requirements-deprecated-finder = ["pip-api", "pipreqs"]
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -581,7 +581,7 @@ testing = ["pytest", "pytest-benchmark"]
 name = "pycodestyle"
 version = "2.10.0"
 description = "Python style guide checker"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -593,7 +593,7 @@ files = [
 name = "pyflakes"
 version = "3.0.1"
 description = "passive checker of Python programs"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -733,7 +733,7 @@ files = [
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -812,4 +812,4 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4da4d6948cf4a2b9517a54456b28d36ee866fb913ec0f69560993916a49dd7f8"
+content-hash = "68a75382aae49dec466623db6dc3ba3f6666193c5578fc471c73727c0d60b8c2"
