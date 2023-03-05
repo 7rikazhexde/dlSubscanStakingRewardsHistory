@@ -1,0 +1,43 @@
+[subscan_api_info]
+token_list = [ "DOT", "KSM", "ASTR",]
+api_key = ""
+subscan_api_doc = "[ https://docs.api.subscan.io/#introduction ]"
+request_url_dot = "/api/v2/scan/account/reward_slash"
+reward_slash_data_header_dot = [ "Event Index", "Era", "Date", "Block", "Extrinsic Index", "Value", "Action", "Stash", "Reward Account", "Validator Stash",]
+reward_slash_data_dot = [ "event_index", "era", "block_timestamp", "extrinsic_index", "amount", "module_id", "event_id", "stash", "account", "validator_stash",]
+api_host_dot = "https://polkadot.api.subscan.io"
+address_dot = ""
+adjust_value_dot = 1e-10
+display_digit_dot = 11
+request_url_ksm = "/api/v2/scan/account/reward_slash"
+reward_slash_data_header_ksm = [ "Event Index", "Era", "Date", "Block", "Extrinsic Index", "Value", "Action", "Stash", "Reward Account",]
+reward_slash_data_ksm = [ "event_index", "era", "block_timestamp", "extrinsic_index", "amount", "module_id", "event_id", "stash", "account",]
+api_host_ksm = "https://kusama.api.subscan.io"
+address_ksm = ""
+adjust_value_ksm = 1e-12
+display_digit_ksm = 11
+request_url_astr = "/api/scan/account/reward_slash"
+reward_slash_data_header_astr = [ "Event ID", "Date", "Block", "Extrinsic Hash", "Value", "Action",]
+reward_slash_data_astr = [ "event_index", "block_timestamp", "block_num", "extrinsic_hash", "amount", "module_id", "event_id",]
+api_host_astr = "https://astar.api.subscan.io"
+address_astr = ""
+adjust_value_astr = 1e-18
+display_digit_astr = 15
+
+[ui_info]
+history_type_list = [ "Reward&Slash", "CryptactCustom",]
+sort_list = [ "昇順", "降順",]
+
+[cryptact_info]
+cryptact_custom_header = [ "Timestamp", "Action", "Source", "Base", "Volume", "Price", "Counter", "Fee", "FeeCcy", "Comment",]
+action = "STAKING"
+price = ""
+counter = "JPY"
+fee = 0
+feeccy = "JPY"
+source_dot = "SOURCE_DOT"
+base_dot = "DOT"
+source_ksm = "SOURCE_KSM"
+base_ksm = "KSM"
+source_astr = "SOURCE_ASTR"
+base_astr = "ASTR"

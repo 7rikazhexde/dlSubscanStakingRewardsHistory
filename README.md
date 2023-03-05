@@ -1,7 +1,7 @@
 # dlSubscanStakingRewardsHistory
 PySimpleGUIとSubscan APIを使用してReward&amp;Slashのデータをcsvファイルで保存するGUIアプリ
 
-[![](https://img.shields.io/badge/poetry-1.3.2-blue)](https://pypi.org/project/poetry/1.3.2/) [![](https://img.shields.io/badge/license-MIT-blue)](https://github.com/opensource-jp/licenses/blob/main/MIT/MIT.md) 
+[![](https://img.shields.io/badge/poetry-1.4.0-blue)](https://pypi.org/project/poetry/1.4.0/) [![](https://img.shields.io/badge/license-MIT-blue)](https://github.com/opensource-jp/licenses/blob/main/MIT/MIT.md) 
 
 ## 概要
 PySimpleGUIとSubscan APIを使用して下記形式のデータをcsvファイルで保存します。
@@ -48,20 +48,14 @@ Docs記載の[アドレス](https://polkadot.subscan.io/reward?address=1REAJ1k69
 ### 1. パッケージインストール
 
 venvやpyenv等で仮想環境を作成して下記コマンドを実行してください。
-```
-% pip install PySimpleGUI
-% pip install pandas
-% pip install requests
-```
-
-もしくは仮想環境下で下記コマンドを実行してください。
-```
+```bash
 % pip install -r requirements.txt
 ```
 
-poetryを使用している場合は下記コマンドを実行してください。
-```
-% poetry install
+poetryを使用している場合は下記コマンドを実行してください。  
+開発環境を使用する場合は「開発用環境の構築」を参照してください。
+```bash
+% poetry install --no-dev
 ```
 ### 2. SubscanAPIの設定  
 
@@ -90,7 +84,7 @@ PySimpleGUIモジュールのクラスの詳細についてはPySimpleGUIの[ELE
 
 **2. 取得対象(Input Element + Spin Element)**  
 取得するトークンを選択します。  
-トークンはDOT,KSM,ASTRに対応し、```config.ini```の```[subscan_api_info]``` ```token_list```で定義します。
+トークンはDOT,KSM,ASTRに対応し、```config.toml```の```[subscan_api_info]``` ```token_list```で定義します。
 
 **3. 履歴タイプ(Input Element + Spin Element)**  
 ```Reward&Slash```と```CryptactCustom```の2タイプから選択します。  
@@ -134,8 +128,8 @@ Subscan APIのResponseデータを表示します。
 
 **14. テーブル(Column Element + Table Element)**  
 「5. 履歴取得」で受信したデータを表示します。データはDataFrameオブジェクトで作成します。  
-テーブルのヘッダーはconfig.iniの```[subscan_api_info]```  ```reward_slash_data_header_dot/_ksm/_astr```から作成します。  
-テーブルの値(pandas.DataFrame.values)はconfig.iniの```[subscan_api_info]``` ```reward_slash_data_dot/_ksm/_astr```の値(list型)から作成します。 
+テーブルのヘッダーはconfig.tomlの```[subscan_api_info]```  ```reward_slash_data_header_dot/_ksm/_astr```から作成します。  
+テーブルの値(pandas.DataFrame.values)はconfig.tomlの```[subscan_api_info]``` ```reward_slash_data_dot/_ksm/_astr```の値(list型)から作成します。 
 
 **15. 選択したテーブルの値(Text Element + InputText Element)**  
 「14. テーブル」で選択した値を表示します。  
@@ -143,19 +137,52 @@ Subscan APIのResponseデータを表示します。
 
 ### 4. コマンド実行
 main.pyを実行するとmain画面が起動します。
-```
+```bash
 src % python main.py
 ```
-poetryの場合は以下コマンドで仮想環境の有効化して実行してください。
-* poetry shell
-  * 仮想環境の有効化: poetry shell
-  * 仮想環境の無効化: exit
+
+Poetryを使用する場合は以下を実行してください。
+```bash
+src % poetry run python main.py
+```
+
+もしくは以下コマンドで仮想環境の有効化して実行してください。
+```bash
+# 仮想環境の有効化
+% poetry shell
+% cd src && python main.py
+# 仮想環境の無効化
+% exit
+```
 
 ## その他
 ### Cryptactカスタムファイル(ステーキング報酬)について
 [カスタムファイルの作成方法 / 2.10.ステーキングによる報酬](https://support.cryptact.com/hc/ja/articles/360002571312-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95#menu210)の仕様に基づきデータを作成します。
-* Cryptactカスタムファイル用のデータはヘッダーと行データで構成されます。ヘッダーはconfig.iniの```[cryptact_info]
+* Cryptactカスタムファイル用のデータはヘッダーと行データで構成されます。ヘッダーはconfig.tomlの```[cryptact_info]
 cryptact_custom_header```の値(list型)から作成します。行データは可変値(`block_timestamp`,`amount`,`event_index`)と固定値(`[cryptact_info]`)を合わせたリストで作成します。
 * `block_timestamp`はそのままではUNIX時間のため`fromtimestamp()`でローカル時間に変換します。
 * 日時情報はクリプタクトの指定に合わせるためフォーマットを指定して文字列に変換します。
 * `amount`はそのままでは実際の報酬量と一致しないためSubscanAPI設定画面で設定する小数点調整値(```[subscan_api_info]``` ```display_digit_dot/ksw/astr```)を有効数字桁数(```[subscan_api_info]``` ```adjust_value_dot/ksw/astr```)を使用して調整します。
+
+### 開発用環境の構築
+開発環境では以下の静的解析ツールに対応しています。
+* [isort](https://pypi.org/project/isort/): import文の自動整理
+* [black](https://pypi.org/project/black/): Python向けのコードフォーマッター(PEP8準拠)
+* [flake8](https://pypi.org/project/flake8/): 文法チェック
+* [mypy](https://pypi.org/project/mypy/): 型アノテーションによる型チェック
+* [pytest](https://pypi.org/project/pytest/): Python向けに作成された単体テストを書くためのフレームワーク
+
+開発環境を構築する場合は以下を実行してください。
+```bash
+% poetry install
+```
+
+静的解析ツールの使用方法(コマンド)
+```bash
+% poetry run isort src tests
+% poetry run black src tests
+% poetry run flake8 src tests
+% poetry run mypy src tests
+% poetry run pytest -s -vv --cov=. --cov-branch --cov-report=html
+```
+
