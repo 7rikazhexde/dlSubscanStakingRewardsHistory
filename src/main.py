@@ -1,7 +1,7 @@
 import webbrowser
 
 import PySimpleGUI as sg
-import toml
+from tomlkit.toml_file import TOMLFile
 
 from gui import CreateGui
 from subscan import (
@@ -14,9 +14,9 @@ class SgWindowProcess:
     def __init__(self):
         # iniファイルから設定を読み込む
         self.__font_info = "游ゴシック Medium"
-        with open("./config.toml") as f:
-            self.__config = toml.load(f)
-        self.__config_subscan_api_info = self.__config["subscan_api_info"]
+        self.__toml_config = TOMLFile("./config.toml")
+        self.__config = self.__toml_config.read()
+        self.__config_subscan_api_info = self.__config.get("subscan_api_info")
         self.__config_subscan_api_doc = self.__config_subscan_api_info[
             "subscan_api_doc"
         ]
@@ -216,9 +216,9 @@ class SgWindowProcess:
                     self.__config_subscan_api_info, values["-TOKEN-"]
                 )
             if event == "-CONFIG_UPDATE-":
-                with open("./config.toml") as f:
-                    edit = toml.load(f)
-                edit_subscan = edit["subscan_api_info"]
+                toml_config = TOMLFile("./config.toml")
+                edit = toml_config.read()
+                edit_subscan = edit.get("subscan_api_info")
                 address_token_value = f"-SUBSCAN_ADDRESS_{sg_gui.token_data}-"
                 address_token = f"address_{(sg_gui.token_data).lower()}"
 
@@ -242,13 +242,12 @@ class SgWindowProcess:
                     values[decimal_point_adjust_token_value]
                 )
 
-                edit_subscan["api_key"] = values["-SUBSCAN_API-"]
-                with open("./config.toml", "w") as f:
-                    toml.dump(edit, f)
+                edit_subscan["api_key"] = str(values["-SUBSCAN_API-"])
+                toml_config.write(edit)
                 window.close()
-                with open("./config.toml") as f:
-                    self.__config = toml.load(f)
-                self.__config_subscan_api_info = self.__config["subscan_api_info"]
+                self.__toml_config = TOMLFile("./config.toml")
+                self.__config = self.__toml_config.read()
+                self.__config_subscan_api_info = self.__config.get("subscan_api_info")
                 self.__config_subscan_api_doc = self.__config_subscan_api_info[
                     "subscan_api_doc"
                 ]

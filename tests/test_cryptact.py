@@ -1,5 +1,5 @@
 import pytest
-import toml
+from tomlkit.toml_file import TOMLFile
 
 from src.cryptact import CryptactInfo
 
@@ -9,9 +9,9 @@ from src.cryptact import CryptactInfo
 # 期待値：tomlファイルからデータを取得したカラムデータ
 """
 def cryptact_test_1case(token,expect_token):
-    with open("./src/config.toml") as f:
-        config = toml.load(f)
-    config_cryptact_info = config["cryptact_info"]
+    config = TOMLFile("./src/config.toml")
+    toml_config = config.read()
+    config_cryptact_info = toml_config.get("cryptact_info")
 
     action = config_cryptact_info["action"]
     price = config_cryptact_info["price"]
@@ -31,9 +31,9 @@ def cryptact_test_1case(token,expect_token):
 
 # tomlファイルからデータを取得して期待値を作成するメソッド
 def cryptact_expect_val(token):
-    with open("./src/config.toml") as f:
-        config = toml.load(f)
-    config_cryptact_info = config["cryptact_info"]
+    config = TOMLFile("./src/config.toml")
+    toml_config = config.read()
+    config_cryptact_info = toml_config.get("cryptact_info")
 
     action = config_cryptact_info["action"]
     price = config_cryptact_info["price"]
@@ -50,9 +50,9 @@ def cryptact_expect_val(token):
 
 # 複数のテストケースを実行する場合(正常系)
 def cryptact_culumn_data_test(token):
-    with open("./src/config.toml") as f:
-        config = toml.load(f)
-    config_cryptact_info = config["cryptact_info"]
+    config = TOMLFile("./src/config.toml")
+    toml_config = config.read()
+    config_cryptact_info = toml_config.get("cryptact_info")
     ci = CryptactInfo(config_cryptact_info, token)
     return ci.cryptact_info
 
@@ -72,9 +72,9 @@ def test1(token, expected):
 
 # 複数のテストケースを実行する場合(異常系)
 def cryptact_culumn_data_test_ng(token):
-    with open("./src/config.toml") as f:
-        config = toml.load(f)
-    config_cryptact_info = config["cryptact_info"]
+    config = TOMLFile("./src/config.toml")
+    toml_config = config.read()
+    config_cryptact_info = toml_config.get("cryptact_info")
     ci = CryptactInfo(config_cryptact_info, token)
     return ci.cryptact_info
 

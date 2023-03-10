@@ -269,7 +269,7 @@ class SubscanStakingRewardsDataFrameForCryptact(SubscanStakingRewardsDataFrame):
 
 class SubscanApiInfo:
     def __init__(self, config_subscan_api_info, token):
-        self.__api_key = config_subscan_api_info["api_key"]
+        self.__api_key = str(config_subscan_api_info["api_key"])
 
         request_url_config = f"request_url_{token.lower()}"
         api_host_config = f"api_host_{token.lower()}"
