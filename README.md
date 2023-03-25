@@ -45,18 +45,42 @@ Docs記載の[アドレス](https://polkadot.subscan.io/reward?address=1REAJ1k69
 [DLしたcsvファイル例](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_300_20220605.csv)
 
 ## 使い方
+※静的解析ツールをサポートする開発環境を使用する場合は[任意] 開発用環境の構築を参照してください。
 ### 1. パッケージインストール
 
-venvやpyenv等で仮想環境を作成して下記コマンドを実行してください。
-```bash
-% pip install -r requirements.txt
+**venv**や**pyenv**等で仮想環境を作成して下記コマンドを実行してください。
+```zsh
+pip install -r requirements.txt
 ```
 
 poetryを使用している場合は下記コマンドを実行してください。  
 開発環境を使用する場合は「開発用環境の構築」を参照してください。
-```bash
-% poetry install --no-dev
+```zsh
+poetry install --no-dev
 ```
+
+### [任意] 開発用環境の構築
+開発環境では以下の静的解析ツールに対応しています。
+* [isort](https://pypi.org/project/isort/): import文の自動整理
+* [black](https://pypi.org/project/black/): Python向けのコードフォーマッター(PEP8準拠)
+* [flake8](https://pypi.org/project/flake8/): 文法チェック
+* [mypy](https://pypi.org/project/mypy/): 型アノテーションによる型チェック
+* [pytest](https://pypi.org/project/pytest/): Python向けに作成された単体テストを書くためのフレームワーク
+
+開発環境を構築する場合は以下を実行してください。
+```zsh
+poetry install
+```
+
+静的解析ツールの使用方法(コマンド)
+```zsh
+poetry run isort src tests
+poetry run black src tests
+poetry run flake8 src tests
+poetry run mypy src tests
+poetry run pytest -s -vv --cov=. --cov-branch --cov-report=html
+```
+
 ### 2. SubscanAPIの設定  
 
 アプリ起動後、設定ボタンよりSubscanAPI設定画面を起動し、
@@ -137,22 +161,25 @@ Subscan APIのResponseデータを表示します。
 
 ### 4. コマンド実行
 main.pyを実行するとmain画面が起動します。
-```bash
-src % python main.py
+```zsh
+cd src && python main.py
 ```
 
 Poetryを使用する場合は以下を実行してください。
-```bash
-src % poetry run python main.py
+```zsh
+cd src && poetry run python main.py
 ```
 
 もしくは以下コマンドで仮想環境の有効化して実行してください。
-```bash
-# 仮想環境の有効化
-% poetry shell
-% cd src && python main.py
-# 仮想環境の無効化
-% exit
+
+仮想環境の有効化
+```zsh
+poetry shell && cd src && python main.py
+```
+
+仮想環境の無効化
+```zsh
+exit
 ```
 
 ## その他
@@ -163,26 +190,3 @@ cryptact_custom_header```の値(list型)から作成します。行データは�
 * `block_timestamp`はそのままではUNIX時間のため`fromtimestamp()`でローカル時間に変換します。
 * 日時情報はクリプタクトの指定に合わせるためフォーマットを指定して文字列に変換します。
 * `amount`はそのままでは実際の報酬量と一致しないためSubscanAPI設定画面で設定する小数点調整値(```[subscan_api_info]``` ```display_digit_dot/ksw/astr```)を有効数字桁数(```[subscan_api_info]``` ```adjust_value_dot/ksw/astr```)を使用して調整します。
-
-### 開発用環境の構築
-開発環境では以下の静的解析ツールに対応しています。
-* [isort](https://pypi.org/project/isort/): import文の自動整理
-* [black](https://pypi.org/project/black/): Python向けのコードフォーマッター(PEP8準拠)
-* [flake8](https://pypi.org/project/flake8/): 文法チェック
-* [mypy](https://pypi.org/project/mypy/): 型アノテーションによる型チェック
-* [pytest](https://pypi.org/project/pytest/): Python向けに作成された単体テストを書くためのフレームワーク
-
-開発環境を構築する場合は以下を実行してください。
-```bash
-% poetry install
-```
-
-静的解析ツールの使用方法(コマンド)
-```bash
-% poetry run isort src tests
-% poetry run black src tests
-% poetry run flake8 src tests
-% poetry run mypy src tests
-% poetry run pytest -s -vv --cov=. --cov-branch --cov-report=html
-```
-
