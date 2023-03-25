@@ -148,7 +148,7 @@ class CreateGui:
                     key="-HISTORY-",
                 ),
                 sg.Button(
-                    "テーブル初期化", font=(font_info, 20), size=(10, 1), key="-RELOAD-"
+                    "テーブル初期化", font=(font_info, 20), size=(11, 1), key="-RELOAD-"
                 ),
                 sg.Button("設定", font=(font_info, 20), size=(5, 1), key="-SETTING-"),
             ],

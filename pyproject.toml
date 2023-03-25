@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dlsubscanstakingrewardshistory"
-version = "0.2.1"
+version = "0.2.2"
 description = "GUI application to save Reward&Slash data as csv file using PySimpleGUI and Subscan API"
 authors = ["7rikaz_h785 <7rikaz.h785.stat2ltas41lcijad@gmail.com>"]
 license = "MIT"

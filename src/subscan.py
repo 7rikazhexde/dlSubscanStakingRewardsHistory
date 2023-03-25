@@ -395,7 +395,11 @@ class SubscanStakingRewardDataProcess:
                 try:
                     # アドレス不正でなければlistの要素数を取得
                     if response_code != 400:
-                        list_num = len(response_json["data"]["list"])
+                        try:
+                            list_num = len(response_json["data"]["list"])
+                        except TypeError as e:
+                            print(e)
+                            list_num = 0
                 except TypeError as e:
                     count = response_json["data"]["count"]
                     print(
@@ -469,7 +473,11 @@ class SubscanStakingRewardDataProcess:
 
             # listの要素数を取得
             if response_code != 400:
-                list_num = len(response_json["data"]["list"])
+                try:
+                    list_num = len(response_json["data"]["list"])
+                except TypeError as e:
+                    print(e)
+                    list_num = 0
 
             # Response結果にエラーがなく、リストが存在すれば受信データを作成する
             if response_status_code == 200 and response_code == 0 and list_num != 0:
@@ -610,7 +618,11 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
                 try:
                     # アドレス不正でなければlistの要素数を取得
                     if response_code != 400:
-                        list_num = len(response_json["data"]["list"])
+                        try:
+                            list_num = len(response_json["data"]["list"])
+                        except TypeError as e:
+                            print(e)
+                            list_num = 0
                 except TypeError as e:
                     count = response_json["data"]["count"]
                     print(
@@ -682,7 +694,11 @@ class SubscanStakingRewardsDataProcessForCryptact(SubscanStakingRewardDataProces
 
             # listの要素数を取得
             if response_code != 400:
-                list_num = len(response_json["data"]["list"])
+                try:
+                    list_num = len(response_json["data"]["list"])
+                except TypeError as e:
+                    print(e)
+                    list_num = 0
 
             # Response結果にエラーがなく、リストが存在すれば受信データを作成する
             if response_status_code == 200 and response_code == 0 and list_num != 0:
