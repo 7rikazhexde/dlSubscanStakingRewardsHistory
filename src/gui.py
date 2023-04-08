@@ -18,7 +18,7 @@ class CreateGui:
         self.__sort_type = self.__sort_list[0]
 
         # CryptactCustom用ヘッダーファイル読み込み
-        self.__cryptact_heder_data = config_cryptact_info["cryptact_custom_header"]
+        self.__cryptact_header_data = config_cryptact_info["cryptact_custom_header"]
 
         # Reward&Slash用ヘッダーファイル読み込み
         reward_slash_data_header_config = (
@@ -95,7 +95,7 @@ class CreateGui:
             visible_columns = [vclum for x in range(10)]
             table_layout = sg.Table(
                 values=data,
-                headings=self.__cryptact_heder_data,
+                headings=self.__cryptact_header_data,
                 font=(font_info, 15),
                 visible_column_map=visible_columns,
                 # 各列が占める文字数指定(トークン共通)
@@ -349,7 +349,7 @@ class CreateGui:
         if self.__history_type == "Reward&Slash":
             header_data = self.__reward_slash_data_header_token
         elif self.__history_type == "CryptactCustom":
-            header_data = self.__cryptact_heder_data
+            header_data = self.__cryptact_header_data
         # テーブルのヘッダー更新
         for cid, text in zip(header_data, headings):
             table.heading(cid, text=text)

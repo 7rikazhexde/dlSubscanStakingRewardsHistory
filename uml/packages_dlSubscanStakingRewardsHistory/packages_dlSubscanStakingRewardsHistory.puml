@@ -1,4 +1,5 @@
 @startuml packages_dlSubscanStakingRewardsHistory
+'!theme none
 set namespaceSeparator none
 package "src" as src {
     package "cryptact.py" as src.cryptact {

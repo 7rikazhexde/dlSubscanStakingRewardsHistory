@@ -1,36 +1,40 @@
 @startuml classes_dlSubscanStakingRewardsHistory
+'!theme none
 set namespaceSeparator none
 
 package main.py <<Frame>>{
   class "SgWindowProcess" as src.main.SgWindowProcess {
-    __config : ConfigParser
-    __config_cryptact_info
-    __config_subscan_api_doc
-    __config_subscan_api_info
-    __config_ui_info
+    __config : dict
+    __config_subscan_api_doc : dict
+    __config_subscan_api_info : dict
+    __config_ui_info : dict
+    __config_cryptact_info : dict
     __font_info : str
+    __toml_config : TOMLFile
     __init__()
     main()
   }
 }
-note left: config.iniからSubscan APIおよび\nCryptactのカスタムファイル情報を読み込む。
+note left #Yellow: config.tomlからSubscan APIおよび\nCryptactのカスタムファイル情報を読み込む。
 
-class "ConfigParser" as configparser.ConfigParser {
+class "TOMLFile" as tomlfile.TOMLFile {
+  read()
 }
 
 package gui.py <<Frame>>{
   class "CreateGui" as src.gui.CreateGui {
-    __cryptact_heder_data
-    __history_type
-    __history_type_list
+    __cryptact_header_data : list
+    __history_type : str
+    __history_type_list : list
     __reward_slash_data_header_token
-    __sort_list
-    __sort_type
-    __token_data
-    __token_data_list
-    history_type
-    sort_type
-    token_data
+    __sort_list : list
+    __sort_type : list
+    __token_data : str
+    __token_data_list : list
+    history_type : str
+    reward_slash_data_header_config : str
+    sort_type : str
+    token_data : str
     __init__(config_subscan_api_info, config_ui_info, config_cryptact_info)
     config_window(config, token)
     get_history_type()
@@ -44,18 +48,18 @@ package gui.py <<Frame>>{
     usage_window()
   }
 }
-note bottom: config情報はコンストラクタで指定し、\nconfig情報はgetter/setterメソッドで処理する\n（各メソッドはイベントに応じて実行する)\
+note bottom #Yellow: config情報はコンストラクタで指定し、\nconfig情報はgetter/setterメソッドで処理する\n（各メソッドはイベントに応じて実行する)\
 
 package cryptact.py <<Frame>>{
   class "CryptactInfo" as src.cryptact.CryptactInfo {
-    __action
-    __base
-    __counter
-    __fee
-    __feeccy
-    __price
-    __source
-    cryptact_info
+    __action : str
+    __base : str
+    __counter : str
+    __fee : int
+    __feeccy : str
+    __price : str
+    __source : str
+    cryptact_info : tuple
     __init__(config_cryptact_info, token)
     get_cryptact_custom_header_data()
   }
@@ -63,61 +67,62 @@ package cryptact.py <<Frame>>{
 
 package subscan.py <<Frame>>{
   class "SubscanApiInfo" as src.subscan.SubscanApiInfo {
-    __address
+    __address : str
     __adjust_value : float
-    __api_endpoint
-    __api_host
-    __api_key
+    __api_endpoint : str
+    __api_host : str
+    __api_key : str
     __data_dict : dict
     __headers_dict : dict
-    __request_url
-    subscan_api_info
+    __request_url : str
+    subscan_api_info : tuple
     __init__(config_subscan_api_info, token)
     get_subscan_api_info()
   }
 
   class "SubscanStakingRewardDataProcess" as src.subscan.SubscanStakingRewardDataProcess {
     adjust_value : float
-    api_endpoint
+    api_endpoint : str
     data_dict : dict
-    df_header
+    data_list : list
+    df_header : DataFrame
     digit : str
-    header_list
+    header_list : DataFrame
     headers_dict : dict
     input_num : int
     response_data : int
-    sort_df_retrieve : int
+    sort_df_retrieve : DataFrame
     sort_type : bool
-    subscan_api_data
-    subscan_stkrwd_df
-    token
+    subscan_api_data : SubscanApiInfo
+    subscan_stkrwd_df : SubscanStakingRewardsDataFrame
+    token : str
     __init__(input_num, config_subscan_api_info, token, sort)
     get_subscan_stakerewards()
     sort_dataframe(df, sort_type)
   }
   class "SubscanStakingRewardsDataFrame" as src.subscan.SubscanStakingRewardsDataFrame {
-    __action
-    __block
-    __date
-    __df_stkrwd_header_data : NoneType, DataFrame
-    __era
-    __event_id
-    __event_index
-    __extrinsic_index
+    __action : str
+    __block : str
+    __date : str
+    __df_cryptact_header_data : DataFrame
+    __df_stkrwd_header_data : DataFrame
+    __era : str
+    __event_id : str
+    __event_index : str
+    __extrinsic_index : str
     __one_line_data_list : list
-    __reward_account
-    __reward_slash_data_header_config
-    __reward_slash_data_header_token
-    __reward_slash_data_token : NoneType
-    __stash
-    __token_data
-    __validator_stash
-    __value : list, str
-    df_cryptact_header_data
-    df_stkrwd_header_data
-    df_stkrwd_header_data
-    reward_slash_data_token
-    token_data
+    __reward_account : str
+    __reward_slash_data_header_config : str
+    __reward_slash_data_header_token : str
+    __reward_slash_data_token : str
+    __stash : str
+    __token_data : str
+    __validator_stash : str
+    __value : str
+    df_stkrwd_header_data : DataFrame
+    reward_slash_data_config : str
+    reward_slash_data_token : str
+    token_data : str
     __init__(config_subscan_api_info, token)
     get_reward_slash_data(item, response_json)
     get_reward_slash_data_var_astr(one_line_headerdata_list, adjust_value, digit)
@@ -130,15 +135,14 @@ package subscan.py <<Frame>>{
     set_stkrwd_header_df(df)
   }
   class "SubscanStakingRewardsDataFrameForCryptact" as src.subscan.SubscanStakingRewardsDataFrameForCryptact {
-    __cryptact_heder_data
-    __date
-    __df_cryptact_header_data : NoneType, DataFrame
-    __event_id
-    __event_index
+    __cryptact_header_data : list
+    __date : str
+    __df_cryptact_header_data : DataFrame
+    __event_id : str
+    __event_index : str
     __one_line_data_list : list
-    __value
-    df_cryptact_header_data
-    df_cryptact_header_data
+    __value : str
+    df_cryptact_header_data : DataFrame
     __init__(config_subscan_api_info, config_cryptact_info, token)
     get_cryptact_header_df()
     get_reward_slash_data_var_cryptact(one_line_headerdata_list, cryptact_info_data, adjust_value, digit)
@@ -146,29 +150,30 @@ package subscan.py <<Frame>>{
   }
   class "SubscanStakingRewardsDataProcessForCryptact" as src.subscan.SubscanStakingRewardsDataProcessForCryptact {
     adjust_value : float
-    api_endpoint
-    cryptact_info_data
+    api_endpoint : str
+    cryptact_info_data : CryptactInfo
     data_dict : dict
-    df_header
+    df_header : DataFrame
     digit : str
-    header_list
+    display_digit_config : str
+    header_list : list
     headers_dict : dict
     input_num : int
-    response_data : int
-    sort_df_retrieve : int
+    response_data : list
+    sort_df_retrieve : DataFrame
     sort_type : bool
-    subscan_api_data
-    subscan_stkrwd_df
+    subscan_api_data : SubscanApiInfo
+    subscan_stkrwd_df : SubscanStakingRewardsDataFrameForCryptact
     __init__(input_num, config_subscan_api_info, config_cryptact_info, token, sort)
     create_stakerewards_cryptact_cutom_df()
   }
 }
 
-note "config情報はコンストラクタで指定し、\nconfig情報はgetterメソッドで取得する。" as N2
+note "config情報はコンストラクタで指定し、\nconfig情報はgetterメソッドで取得する。" as N2 #Yellow
 src.subscan.SubscanApiInfo .. N2
 src.cryptact.CryptactInfo .. N2
 
-src.main.SgWindowProcess "1" -- "2" configparser.ConfigParser : self.config,edit
+src.main.SgWindowProcess "1" -- "3" tomlfile.TOMLFile : __toml_config,config
 src.gui.CreateGui "1" --* "1" src.main.SgWindowProcess : sg_gui
 src.subscan.SubscanStakingRewardDataProcess "1" --* "1" src.main.SgWindowProcess : stkrwd
 src.subscan.SubscanStakingRewardsDataProcessForCryptact "1" --* "1" src.main.SgWindowProcess : cyrptactcustom

@@ -179,9 +179,9 @@ class SubscanStakingRewardsDataFrameForCryptact(SubscanStakingRewardsDataFrame):
     def __init__(self, config_subscan_api_info, config_cryptact_info, token):
         super().__init__(config_subscan_api_info, token)
         # クリプタクトカスタムファイル用のDataFrameを作成
-        self.__cryptact_heder_data = config_cryptact_info["cryptact_custom_header"]
+        self.__cryptact_header_data = config_cryptact_info["cryptact_custom_header"]
         self.__df_cryptact_header_data = pd.DataFrame(
-            columns=self.__cryptact_heder_data
+            columns=self.__cryptact_header_data
         )
 
     # クリプタクトカスタムファイル用のDataFrameに対するアクセサ
