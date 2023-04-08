@@ -21,6 +21,9 @@ PySimpleGUIとSubscanAPIを使用してReward&amp;Slashのデータをcsvファ�
   - [コマンド実行](#コマンド実行)
 - [その他](#その他)
   - [Cryptactカスタムファイル(ステーキング報酬)について](#Cryptactカスタムファイル(ステーキング報酬)について)
+  - [構造](#構造)
+    - [パッケージ図](#パッケージ図)
+    - [クラス図](#クラス図)
 
 ## 概要
 PySimpleGUIとSubscanAPIを使用して下記形式のデータをcsvファイルで保存します。
@@ -209,3 +212,12 @@ cryptact_custom_header```の値(list型)から作成します。行データは�
 * `block_timestamp`はそのままではUNIX時間のため`fromtimestamp()`でローカル時間に変換します。
 * 日時情報はクリプタクトの指定に合わせるためフォーマットを指定して文字列に変換します。
 * `amount`はそのままでは実際の報酬量と一致しないためSubscanAPI設定画面で設定する小数点調整値(```[SubscanAPI_info]``` ```display_digit_dot/ksw/astr```)を有効数字桁数(```[SubscanAPI_info]``` ```adjust_value_dot/ksw/astr```)を使用して調整します。
+
+### 構造
+#### パッケージ図
+![パッケージ図](http://www.plantuml.com/plantuml/proxy?src=https://gist.githubusercontent.com/7rikazhexde/b2d9e0dc0ba65489fcc6a69097711bf7/raw)  
+[source](https://gist.github.com/7rikazhexde/b2d9e0dc0ba65489fcc6a69097711bf7)
+
+#### クラス図
+![クラス図](http://www.plantuml.com/plantuml/proxy?src=https://gist.githubusercontent.com/7rikazhexde/4b86d017691376cd4d6fad2514de068f/raw)  
+[source](https://gist.github.com/7rikazhexde/4b86d017691376cd4d6fad2514de068f)
