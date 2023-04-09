@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="343px" preserveAspectRatio="none" style="width:241px;height:343px;background:#FFFFFF;" version="1.1" viewBox="0 0 241 343" width="241px" zoomAndPan="magnify"><defs/><g><!--MD5=[c60679dfbe80eab0cae5e3add7b10464]
+cluster src--><g id="cluster_src"><path d="M8.5,6 L34.5,6 A3.75,3.75 0 0 1 37,8.5 L44,28.2969 L231.5,28.2969 A2.5,2.5 0 0 1 234,30.7969 L234,333.5 A2.5,2.5 0 0 1 231.5,336 L8.5,336 A2.5,2.5 0 0 1 6,333.5 L6,8.5 A2.5,2.5 0 0 1 8.5,6 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="44" y1="28.2969" y2="28.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="25" x="10" y="20.9951">src</text></g><path d="M123,267 L199,267 A3.75,3.75 0 0 1 201.5,269.5 L208.5,289.2969 L213,289.2969 A2.5,2.5 0 0 1 215.5,291.7969 L215.5,317.0938 A2.5,2.5 0 0 1 213,319.5938 L123,319.5938 A2.5,2.5 0 0 1 120.5,317.0938 L120.5,269.5 A2.5,2.5 0 0 1 123,267 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><line style="stroke:#181818;stroke-width:0.5;" x1="120.5" x2="208.5" y1="289.2969" y2="289.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75" x="124.5" y="281.9951">cryptact.py</text><path d="M25,154 L67,154 A3.75,3.75 0 0 1 69.5,156.5 L76.5,176.2969 L81,176.2969 A2.5,2.5 0 0 1 83.5,178.7969 L83.5,204.0938 A2.5,2.5 0 0 1 81,206.5938 L25,206.5938 A2.5,2.5 0 0 1 22.5,204.0938 L22.5,156.5 A2.5,2.5 0 0 1 25,154 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><line style="stroke:#181818;stroke-width:0.5;" x1="22.5" x2="76.5" y1="176.2969" y2="176.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41" x="26.5" y="168.9951">gui.py</text><path d="M79,41 L133,41 A3.75,3.75 0 0 1 135.5,43.5 L142.5,63.2969 L147,63.2969 A2.5,2.5 0 0 1 149.5,65.7969 L149.5,91.0938 A2.5,2.5 0 0 1 147,93.5938 L79,93.5938 A2.5,2.5 0 0 1 76.5,91.0938 L76.5,43.5 A2.5,2.5 0 0 1 79,41 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><line style="stroke:#181818;stroke-width:0.5;" x1="76.5" x2="142.5" y1="63.2969" y2="63.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53" x="80.5" y="55.9951">main.py</text><path d="M121,154 L201,154 A3.75,3.75 0 0 1 203.5,156.5 L210.5,176.2969 L215,176.2969 A2.5,2.5 0 0 1 217.5,178.7969 L217.5,204.0938 A2.5,2.5 0 0 1 215,206.5938 L121,206.5938 A2.5,2.5 0 0 1 118.5,204.0938 L118.5,156.5 A2.5,2.5 0 0 1 121,154 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><line style="stroke:#181818;stroke-width:0.5;" x1="118.5" x2="210.5" y1="176.2969" y2="176.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="122.5" y="168.9951">subscan.py</text><!--MD5=[f745306cff640cba0734d243bfd6f3cf]
+link src.main to src.gui--><g id="link_src.main_src.gui"><path d="M99.08,94.24 C90.22,110.64 78.71,131.94 69.4,149.16 " fill="none" id="src.main-to-src.gui" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="66.84,153.89,74.6462,147.8848,69.2233,149.4945,67.6135,144.0716,66.84,153.89" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[eebe7dfb08e677d0e57dd81b5408c883]
+link src.main to src.subscan--><g id="link_src.main_src.subscan"><path d="M125.76,94.24 C133.88,110.64 144.44,131.94 152.96,149.16 " fill="none" id="src.main-to-src.subscan" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="155.31,153.89,154.9131,144.0491,153.0968,149.4065,147.7395,147.5903,155.31,153.89" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[7b49df7762f23f95fe5c81a658070a75]
+link src.subscan to src.cryptact--><g id="link_src.subscan_src.cryptact"><path d="M168,207.24 C168,223.5 168,244.58 168,261.71 " fill="none" id="src.subscan-to-src.cryptact" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="168,266.89,172.0257,257.9015,168.0143,261.89,164.0257,257.8786,168,266.89" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[995a281d154590c08b58cc303d19d133]
+@startuml packages_dlSubscanStakingRewardsHistory
+'!theme none
+set namespaceSeparator none
+package "src" as src {
+    package "cryptact.py" as src.cryptact {
+    }
+    package "gui.py" as src.gui {
+    }
+    package "main.py" as src.main {
+    }
+    package "subscan.py" as src.subscan {
+    }
+}
+
+src.main - -> src.gui
+src.main - -> src.subscan
+src.subscan - -> src.cryptact
+@enduml
+
+@startuml packages_dlSubscanStakingRewardsHistory
+set namespaceSeparator none
+package "src" as src {
+    package "cryptact.py" as src.cryptact {
+    }
+    package "gui.py" as src.gui {
+    }
+    package "main.py" as src.main {
+    }
+    package "subscan.py" as src.subscan {
+    }
+}
+
+src.main - -> src.gui
+src.main - -> src.subscan
+src.subscan - -> src.cryptact
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 02:01:30 JST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

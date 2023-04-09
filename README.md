@@ -215,9 +215,9 @@ cryptact_custom_header```の値(list型)から作成します。行データは�
 
 ### 構造
 #### パッケージ図
-![パッケージ図](http://www.plantuml.com/plantuml/proxy?src=https://gist.githubusercontent.com/7rikazhexde/b2d9e0dc0ba65489fcc6a69097711bf7/raw)  
-[source](https://gist.github.com/7rikazhexde/b2d9e0dc0ba65489fcc6a69097711bf7)
+![パッケージ図](./uml/packages_dlSubscanStakingRewardsHistory/packages_dlSubscanStakingRewardsHistory.svg)  
+[source](./uml/packages_dlSubscanStakingRewardsHistory/packages_dlSubscanStakingRewardsHistory.puml)
 
 #### クラス図
-![クラス図](http://www.plantuml.com/plantuml/proxy?src=https://gist.githubusercontent.com/7rikazhexde/4b86d017691376cd4d6fad2514de068f/raw)  
-[source](https://gist.github.com/7rikazhexde/4b86d017691376cd4d6fad2514de068f)
+![クラス図](./uml/classes_dlSubscanStakingRewardsHistory/classes_dlSubscanStakingRewardsHistory.svg)  
+[source](./uml/classes_dlSubscanStakingRewardsHistory/classes_dlSubscanStakingRewardsHistory.puml)
