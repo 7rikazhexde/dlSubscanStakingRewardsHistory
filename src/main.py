@@ -142,7 +142,9 @@ class SgWindowProcess:
                         quit()
 
                     if list_num == 0:
-                        text = "値を取得できませんでした。\nアカウントアドレス、または、取得した値を確認してください。\nアプリを終了します。"
+                        text = (
+                            "値を取得できませんでした。\nアカウントアドレス、または、取得した値を確認してください。\nアプリを終了します。"
+                        )
                         sg.popup_scrolled(
                             "error", text, size=(40, 5), font=(self.__font_info, 20)
                         )
