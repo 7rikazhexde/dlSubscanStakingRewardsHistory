@@ -142,9 +142,7 @@ class SgWindowProcess:
                         quit()
 
                     if list_num == 0:
-                        text = (
-                            "値を取得できませんでした。\nアカウントアドレス、または、取得した値を確認してください。\nアプリを終了します。"
-                        )
+                        text = "値を取得できませんでした。\nアカウントアドレス、または、取得した値を確認してください。\nアプリを終了します。"
                         sg.popup_scrolled(
                             "error", text, size=(40, 5), font=(self.__font_info, 20)
                         )
@@ -181,7 +179,9 @@ class SgWindowProcess:
                     if values["-HISTORY-"] == "Reward&Slash":
                         table_title_string = "テーブル表示形式:Reward&Slash形式"
                     elif values["-HISTORY-"] == "CryptactCustom":
-                        table_title_string = "テーブル表示形式:クリプタクトカスタムファイル"
+                        table_title_string = (
+                            "テーブル表示形式:クリプタクトカスタムファイル"
+                        )
 
                     window["-SHOW_TABLE-"].update(table_title_string)
                 else:
@@ -207,7 +207,9 @@ class SgWindowProcess:
                     file_path = result + ".csv"
                     df_csv.to_csv(file_path, index=False, encoding="utf-8")
                     save_location = file_path
-                    output_string = f"ファイル保存先:\n-- Save Location: {save_location}\n"
+                    output_string = (
+                        f"ファイル保存先:\n-- Save Location: {save_location}\n"
+                    )
                     window["-OUTPUT2-"].update(output_string)
             if event == "-SETTING-":
                 # 取引対象と履歴タイプを選択した値で表示するため現在の値をSetする

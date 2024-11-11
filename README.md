@@ -1,100 +1,121 @@
 # dlSubscanStakingRewardsHistory
+
 PySimpleGUIとSubscanAPIを使用してReward&amp;Slashのデータをcsvファイルで保存するGUIアプリ
 
-[![](https://img.shields.io/badge/poetry-1.4.1-blue)](https://pypi.org/project/poetry/1.4.1/) [![](https://img.shields.io/badge/license-MIT-blue)](https://github.com/opensource-jp/licenses/blob/main/MIT/MIT.md) 
-
 ## 目次
-- [概要](#概要)
-- [取得対象のTokenとSubscanAPI情報](#取得対象のTokenとSubscanAPI情報)
-  - [注意事項1](#注意事項1)
-- [サンプル](#サンプル)
-  - [注意事項2](#注意事項2)
-  - [起動画面](#起動画面)
-  - [履歴タイプ：Reward&Slash](#履歴タイプ：Reward&Slash)
-  - [履歴タイプ：CryptactCustom](#履歴タイプ：CryptactCustom)
-- [使い方](#使い方)
-  - [パッケージインストール](#パッケージインストール)
+
+- [dlSubscanStakingRewardsHistory](#dlsubscanstakingrewardshistory)
+  - [目次](#目次)
+  - [概要](#概要)
+    - [取得対象のTokenとSubscanAPI情報](#取得対象のtokenとsubscanapi情報)
+    - [注意事項1](#注意事項1)
+  - [サンプル](#サンプル)
+    - [注意事項2](#注意事項2)
+    - [起動画面](#起動画面)
+    - [履歴タイプ：Reward\&Slash](#履歴タイプrewardslash)
+    - [履歴タイプ：CryptactCustom](#履歴タイプcryptactcustom)
+  - [使い方](#使い方)
+    - [パッケージインストール](#パッケージインストール)
     - [開発用環境の構築](#開発用環境の構築)
-  - [SubscanAPIの設定](#SubscanAPIの設定)
-  - [main画面操作実行](#main画面操作実行)
-    - [画面の名称と詳細](#画面の名称と詳細)
-  - [コマンド実行](#コマンド実行)
-- [その他](#その他)
-  - [Cryptactカスタムファイル(ステーキング報酬)について](#Cryptactカスタムファイル(ステーキング報酬)について)
-  - [構造](#構造)
-    - [パッケージ図](#パッケージ図)
-    - [クラス図](#クラス図)
+    - [SubscanAPIの設定](#subscanapiの設定)
+    - [main画面操作実行](#main画面操作実行)
+      - [画面の名称と詳細](#画面の名称と詳細)
+    - [コマンド実行](#コマンド実行)
+  - [その他](#その他)
+    - [Cryptactカスタムファイル(ステーキング報酬)について](#cryptactカスタムファイルステーキング報酬について)
+    - [構造](#構造)
+      - [パッケージ図](#パッケージ図)
+      - [クラス図](#クラス図)
 
 ## 概要
+
 PySimpleGUIとSubscanAPIを使用して下記形式のデータをcsvファイルで保存します。
-* Reward&Slashの取引履歴(Download all data)  
-* Cryptactカスタムファイル(ステーキング報酬)  
+
+- Reward&Slashの取引履歴(Download all data)  
+- Cryptactカスタムファイル(ステーキング報酬)  
 
 ### 取得対象のTokenとSubscanAPI情報
+
 StakingRewardsは[API Endpoint](https://support.subscan.io/#api-endpoints)の仕様に合わせてトークン毎に下記`Request URL`を指定して取得します。
-| Token | API         | Request URL     | module_id    | event_id | 
-| ----- | ----------- | --------------- | ------------ | -------- | 
-| DOT   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
-| KSM   | V2 API      | reward-slash-v2 | Staking      | Reward   | 
-| ASTR  | Staking API | reward-slash    | dappsstaking | Reward   | 
+
+| Token | API         | Request URL     | module_id    | event_id |
+| ----- | ----------- | --------------- | ------------ | -------- |
+| DOT   | V2 API      | reward-slash-v2 | Staking      | Reward   |
+| KSM   | V2 API      | reward-slash-v2 | Staking      | Reward   |
+| ASTR  | Staking API | reward-slash    | dappsstaking | Reward   |
 
 ### 注意事項1
-* 特定のアカウントで受信データの確認をできることは確認していますが、必ずしも期待されたデータを取得することは保証しません。
-* 本コードを実行したこと、参考にしたことによって被るあらゆる損害について責任を負いかねますのでご注意ください。
-* Subscanの仕様やクリプタクトのデータフォーマットは変わることがありますので、最新の情報を確認してください。
-* アプリを使用する際は後述する設定画面よりSubscanAPI情報を設定してください。
-* 取引履歴は取引状況に依存します。取得したデータは目的のデータを取得できていること、トランザクションデータを参照して誤りがないことを必ず確認してください。
-* サポートするNetworkはPolkadot,Kusama,Astarのみです。  
+
+- 特定のアカウントで受信データの確認をできることは確認していますが、必ずしも期待されたデータを取得することは保証しません。
+- 本コードを実行したこと、参考にしたことによって被るあらゆる損害について責任を負いかねますのでご注意ください。
+- Subscanの仕様やクリプタクトのデータフォーマットは変わることがありますので、最新の情報を確認してください。
+- アプリを使用する際は後述する設定画面よりSubscanAPI情報を設定してください。
+- 取引履歴は取引状況に依存します。取得したデータは目的のデータを取得できていること、トランザクションデータを参照して誤りがないことを必ず確認してください。
+- サポートするNetworkはPolkadot,Kusama,Astarのみです。  
   他のNetworkを指定した場合正しく取得できずにエラーになります。  
   (参考:[API Endpoints](https://support.subscan.io/#api-endpoints))  
 
 ## サンプル
-Docs記載の[アドレス](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)で取得したReward&Slashを例に示します。(2022/06/05時点) 
+
+Docs記載の[アドレス](https://polkadot.subscan.io/reward?address=1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih&role=account)で取得したReward&Slashを例に示します。(2022/06/05時点)
+
 ### 注意事項2
-* 前提として、アプリ上で表示されるデータはSubscan Expoloerで表示されるStakingReward(Value)とは異なります。
-* 全てのアカウントに当てはまる訳ではありませんが、Valueは桁数調整されて表示されています。
-* 本コードではReward&Slashの取引履歴(Download all data)に合わせていますので、確認する際はそちらと比較してください。
+
+- 前提として、アプリ上で表示されるデータはSubscan Expoloerで表示されるStakingReward(Value)とは異なります。
+- 全てのアカウントに当てはまる訳ではありませんが、Valueは桁数調整されて表示されています。
+- 本コードではReward&Slashの取引履歴(Download all data)に合わせていますので、確認する際はそちらと比較してください。
 
 ### 起動画面
+
 ![image1](./png/dlSubscanStakingRewardsHistory_startup.png)  
 
 ### 履歴タイプ：Reward&Slash
+
 ![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)
 [DLしたcsvファイル例](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_Reward&Slash_300_20220605.csv)
 
 ### 履歴タイプ：CryptactCustom
+
 ![image1](./png/dlSubscanStakingRewardsHistory_CryptactCustom.png)
 [DLしたcsvファイル例](./csv_sample/1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih_CryptactCustom_300_20220605.csv)
 
 ## 使い方
+
 ※静的解析ツールをサポートする開発環境を使用する場合は開発用環境の構築を参照してください。
+
 ### パッケージインストール
 
 **venv**や**pyenv**等で仮想環境を作成して下記コマンドを実行してください。
+
 ```zsh
 pip install -r requirements.txt
 ```
 
 poetryを使用している場合は下記コマンドを実行してください。  
 開発環境を使用する場合は「開発用環境の構築」を参照してください。
+
 ```zsh
 poetry install --no-dev
 ```
 
 ### 開発用環境の構築
+
 開発環境では以下の静的解析ツールに対応しています。
-* [isort](https://pypi.org/project/isort/): import文の自動整理
-* [black](https://pypi.org/project/black/): Python向けのコードフォーマッター(PEP8準拠)
-* [flake8](https://pypi.org/project/flake8/): 文法チェック
-* [mypy](https://pypi.org/project/mypy/): 型アノテーションによる型チェック
-* [pytest](https://pypi.org/project/pytest/): Python向けに作成された単体テストを書くためのフレームワーク
+
+- [isort](https://pypi.org/project/isort/): import文の自動整理
+- [black](https://pypi.org/project/black/): Python向けのコードフォーマッター(PEP8準拠)
+- [flake8](https://pypi.org/project/flake8/): 文法チェック
+- [mypy](https://pypi.org/project/mypy/): 型アノテーションによる型チェック
+- [pytest](https://pypi.org/project/pytest/): Python向けに作成された単体テストを書くためのフレームワーク
 
 開発環境を構築する場合は以下を実行してください。
+
 ```zsh
 poetry install
 ```
 
 静的解析ツールの使用方法(コマンド)
+
 ```zsh
 poetry run isort src tests
 poetry run black src tests
@@ -113,14 +134,15 @@ APIキー、アドレス、小数点調整値、有効数字桁数を設定し�
 ![image2](./png/dlSubscanStakingRewardsHistory_setting.png)  
 
 **＜補足＞**  
-APIキーはHTTP Request Header情報(```X-API-Key```)で使用しますが、未指定でも値は取得できます。    
+APIキーはHTTP Request Header情報(```X-API-Key```)で使用しますが、未指定でも値は取得できます。  
 ただし、ResponseデータはRate Limiting(参考:[Global Conventions](https://support.subscan.io/#global-conventions))に依存します。  
 取得件数に大きい値で指定すると「```429 Too Many Requests```」となり、正しく動作しないことがあリます。利用する際はAPIキーの取得をお願いします。  
 
-
 ### main画面操作実行
+
 #### 画面の名称と詳細
-以下ではDocs記載のアドレスを例にして画面の名称(PySimpleGUIモジュールのクラス)ついて説明します。    
+
+以下ではDocs記載のアドレスを例にして画面の名称(PySimpleGUIモジュールのクラス)ついて説明します。  
 PySimpleGUIモジュールのクラスの詳細についてはPySimpleGUIの[ELEMENT AND FUNCTION CALL REFERENCE](https://pysimplegui.readthedocs.io/en/latest/call%20reference/#element-and-function-call-reference)を参照してください。  
 
 ![image1](./png/dlSubscanStakingRewardsHistory_Reward&Slash.png)  
@@ -175,19 +197,22 @@ SubscanAPIのResponseデータを表示します。
 **14. テーブル(Column Element + Table Element)**  
 「5. 履歴取得」で受信したデータを表示します。データはDataFrameオブジェクトで作成します。  
 テーブルのヘッダーはconfig.tomlの```[SubscanAPI_info]```  ```reward_slash_data_header_dot/_ksm/_astr```から作成します。  
-テーブルの値(pandas.DataFrame.values)はconfig.tomlの```[SubscanAPI_info]``` ```reward_slash_data_dot/_ksm/_astr```の値(list型)から作成します。 
+テーブルの値(pandas.DataFrame.values)はconfig.tomlの```[SubscanAPI_info]``` ```reward_slash_data_dot/_ksm/_astr```の値(list型)から作成します。
 
 **15. 選択したテーブルの値(Text Element + InputText Element)**  
 「14. テーブル」で選択した値を表示します。  
 値はコピー可能な形式にするためInputText Elementで作成します。
 
 ### コマンド実行
+
 main.pyを実行するとmain画面が起動します。
+
 ```zsh
 cd src && python main.py
 ```
 
 Poetryを使用する場合は以下を実行してください。
+
 ```zsh
 cd src && poetry run python main.py
 ```
@@ -195,29 +220,37 @@ cd src && poetry run python main.py
 もしくは以下コマンドで仮想環境の有効化して実行してください。
 
 仮想環境の有効化
+
 ```zsh
 poetry shell && cd src && python main.py
 ```
 
 仮想環境の無効化
+
 ```zsh
 exit
 ```
 
 ## その他
+
 ### Cryptactカスタムファイル(ステーキング報酬)について
+
 [カスタムファイルの作成方法 / 2.10.ステーキングによる報酬](https://support.cryptact.com/hc/ja/articles/360002571312-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95#menu210)の仕様に基づきデータを作成します。
-* Cryptactカスタムファイル用のデータはヘッダーと行データで構成されます。ヘッダーはconfig.tomlの```[cryptact_info]
-cryptact_custom_header```の値(list型)から作成します。行データは可変値(`block_timestamp`,`amount`,`event_index`)と固定値(`[cryptact_info]`)を合わせたリストで作成します。
-* `block_timestamp`はそのままではUNIX時間のため`fromtimestamp()`でローカル時間に変換します。
-* 日時情報はクリプタクトの指定に合わせるためフォーマットを指定して文字列に変換します。
-* `amount`はそのままでは実際の報酬量と一致しないためSubscanAPI設定画面で設定する小数点調整値(```[SubscanAPI_info]``` ```display_digit_dot/ksw/astr```)を有効数字桁数(```[SubscanAPI_info]``` ```adjust_value_dot/ksw/astr```)を使用して調整します。
+
+- Cryptactカスタムファイル用のデータはヘッダーと行データで構成されます。ヘッダーはconfig.tomlの```[cryptact_info]
+- Cryptact_custom_header```の値(list型)から作成します。行データは可変値(`block_timestamp`,`amount`,`event_index`)と固定値(`[cryptact_info]`)を合わせたリストで作成します。
+- `block_timestamp`はそのままではUNIX時間のため`fromtimestamp()`でローカル時間に変換します。
+- 日時情報はクリプタクトの指定に合わせるためフォーマットを指定して文字列に変換します。
+- `amount`はそのままでは実際の報酬量と一致しないためSubscanAPI設定画面で設定する小数点調整値(```[SubscanAPI_info]``` ```display_digit_dot/ksw/astr```)を有効数字桁数(```[SubscanAPI_info]``` ```adjust_value_dot/ksw/astr```)を使用して調整します。
 
 ### 構造
+
 #### パッケージ図
+
 ![パッケージ図](./uml/packages_dlSubscanStakingRewardsHistory/packages_dlSubscanStakingRewardsHistory.svg)  
 [source](./uml/packages_dlSubscanStakingRewardsHistory/packages_dlSubscanStakingRewardsHistory.puml)
 
 #### クラス図
+
 ![クラス図](./uml/classes_dlSubscanStakingRewardsHistory/classes_dlSubscanStakingRewardsHistory.svg)  
 [source](./uml/classes_dlSubscanStakingRewardsHistory/classes_dlSubscanStakingRewardsHistory.puml)

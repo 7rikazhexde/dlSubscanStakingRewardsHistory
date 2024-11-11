@@ -11,7 +11,7 @@ token_list = [ "DOT", "KSM", "ASTR",]
 # API Key(User-defined required)
 # The API key is used in the HTTP Request Header information (X-API-Key), but the value can be obtained even if not specified.
 # However, Response data depends on Rate Limiting (Reference: Global Conventions).
-# If a large value is specified for the number of requests, "429 Too Many Requests" may result, and the function may not work properly. 
+# If a large value is specified for the number of requests, "429 Too Many Requests" may result, and the function may not work properly.
 # Please obtain an API key when using this service.
 api_key = ""
 
